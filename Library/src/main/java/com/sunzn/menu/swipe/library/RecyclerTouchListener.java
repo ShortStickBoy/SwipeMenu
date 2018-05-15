@@ -36,6 +36,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
     List<Integer> independentViews;
     List<Integer> unClickableRows;
     List<Integer> optionViews;
+    List<Integer> negativeViews;
     Set<Integer> ignoredViewTypes;
     // Cached ViewConfiguration and system-wide constant values
     private int touchSlop;
@@ -76,6 +77,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
     private OnSwipeOptionsClickListener mBgClickListener, mBgClickListenerLeft;
     // user choices
     private boolean clickable = false;
+    private boolean mCloseAble = true;
     private boolean longClickable = false;
     private boolean swipeable = false, swipeableLeftOptions = false;
     private int LONG_CLICK_DELAY = 800;
@@ -246,6 +248,11 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
         this.swipeable = value;
         if (!value)
             invalidateSwipeOptions();
+        return this;
+    }
+
+    public RecyclerTouchListener setNegativeViews(Integer... viewIds) {
+        this.negativeViews = new ArrayList<>(Arrays.asList(viewIds));
         return this;
     }
 
@@ -751,17 +758,22 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                         final int optionID = getOptionViewID(motionEvent);
                         if (optionID >= 0 && touchedPosition >= 0) {
                             final int downPosition = touchedPosition;
-                            closeVisibleBG(new OnSwipeListener() {
-                                @Override
-                                public void onSwipeOptionsClosed() {
-                                    mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
-                                }
 
-                                @Override
-                                public void onSwipeOptionsOpened() {
+                            if (negativeViews.contains(optionID)) {
+                                mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
+                            } else {
+                                closeVisibleBG(new OnSwipeListener() {
+                                    @Override
+                                    public void onSwipeOptionsClosed() {
+                                        mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
+                                    }
 
-                                }
-                            });
+                                    @Override
+                                    public void onSwipeOptionsOpened() {
+
+                                    }
+                                });
+                            }
                         }
                     }
                 }
