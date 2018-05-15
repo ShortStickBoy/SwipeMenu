@@ -77,7 +77,6 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
     private OnSwipeOptionsClickListener mBgClickListener, mBgClickListenerLeft;
     // user choices
     private boolean clickable = false;
-    private boolean mCloseAble = true;
     private boolean longClickable = false;
     private boolean swipeable = false, swipeableLeftOptions = false;
     private int LONG_CLICK_DELAY = 800;
@@ -359,7 +358,6 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
         bgVisiblePosition = touchedPosition;
     }
 
-    @Deprecated
     public void closeVisibleBG() {
         if (bgVisibleView == null) {
             Log.e(TAG, "No rows found for which background options are visible");
