@@ -536,8 +536,9 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                         fgView = touchedView.findViewById(fgViewID);
                         bgView = touchedView.findViewById(bgViewID);
 //                        bgView.getLayoutParams().height = fgView.getHeight();
-                        bgView.setMinimumHeight(fgView.getHeight());
-
+                        if (fgView != null) {
+                            bgView.setMinimumHeight(fgView.getHeight());
+                        }
                         /*
                          * bgVisible is true when the options menu is opened
                          * This block is to register fgPartialViewClicked status - Partial view is the view that is still
@@ -760,7 +761,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                         if (optionID >= 0 && touchedPosition >= 0) {
                             final int downPosition = touchedPosition;
 
-                            if (negativeViews.contains(optionID)) {
+                            if (negativeViews != null && negativeViews.contains(optionID)) {
                                 mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
                             } else {
                                 closeVisibleBG(new OnSwipeListenerAdapter() {
