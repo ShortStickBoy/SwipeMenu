@@ -536,9 +536,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                         fgView = touchedView.findViewById(fgViewID);
                         bgView = touchedView.findViewById(bgViewID);
 //                        bgView.getLayoutParams().height = fgView.getHeight();
-                        if (fgView != null) {
-                            bgView.setMinimumHeight(fgView.getHeight());
-                        }
+                        bgView.setMinimumHeight(fgView.getHeight());
                         /*
                          * bgVisible is true when the options menu is opened
                          * This block is to register fgPartialViewClicked status - Partial view is the view that is still
@@ -647,8 +645,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                     float velocityX = mVelocityTracker.getXVelocity();
                     float absVelocityX = Math.abs(velocityX);
                     float absVelocityY = Math.abs(mVelocityTracker.getYVelocity());
-                    if (minFlingVel <= absVelocityX && absVelocityX <= maxFlingVel
-                            && absVelocityY < absVelocityX && isFgSwiping) {
+                    if (minFlingVel <= absVelocityX && absVelocityX <= maxFlingVel && absVelocityY < absVelocityX && isFgSwiping) {
                         // dismiss only if flinging in the same direction as dragging
                         swipedLeftProper = (velocityX < 0) == (mFinalDelta < 0);
                         swipedRightProper = (velocityX > 0) == (mFinalDelta > 0);
@@ -744,13 +741,11 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                         bgVisiblePosition = -1;
                     }
                     // On Click listener for rows
-                    else if (clickable && !bgVisible && touchedPosition >= 0 && !unClickableRows.contains(touchedPosition)
-                            && isIndependentViewClicked(motionEvent) && !isRViewScrolling) {
+                    else if (clickable && !bgVisible && touchedPosition >= 0 && !unClickableRows.contains(touchedPosition) && isIndependentViewClicked(motionEvent) && !isRViewScrolling) {
                         mRowClickListener.onRowClicked(touchedPosition);
                     }
                     // On Click listener for independent views inside the rows
-                    else if (clickable && !bgVisible && touchedPosition >= 0 && !unClickableRows.contains(touchedPosition)
-                            && !isIndependentViewClicked(motionEvent) && !isRViewScrolling) {
+                    else if (clickable && !bgVisible && touchedPosition >= 0 && !unClickableRows.contains(touchedPosition) && !isIndependentViewClicked(motionEvent) && !isRViewScrolling) {
                         final int independentViewID = getIndependentViewID(motionEvent);
                         if (independentViewID >= 0)
                             mRowClickListener.onIndependentViewClicked(independentViewID, touchedPosition);
