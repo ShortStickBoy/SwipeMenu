@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.sunzn.menu.swipe.library.OnActivityTouchListener;
 import com.sunzn.menu.swipe.library.RecyclerTouchListener;
@@ -57,14 +58,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
                     }
                 })
                 .setLongClickable(false)
+                .setNegativeViews(R.id.del)
                 .setSwipeOptionViews(R.id.edit, R.id.del)
                 .setSwipeAble(R.id.foreground_holder, R.id.background_holder, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
                     @Override
                     public void onSwipeOptionClicked(int viewID, int position) {
                         switch (viewID) {
                             case R.id.edit:
+                                Toast.makeText(MainActivity.this, "Edit", Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.del:
+                                Toast.makeText(MainActivity.this, "Del", Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }
