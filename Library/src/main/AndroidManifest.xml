@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sunzn.menu.swipe.library" />
+    package="com.sunzn.menu.swipe.library">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+</manifest>
