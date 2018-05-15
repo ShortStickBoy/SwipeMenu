@@ -17,6 +17,9 @@ import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ListView;
 
+import com.sunzn.menu.swipe.library.port.OnSwipeListener;
+import com.sunzn.menu.swipe.library.port.OnSwipeListenerAdapter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -760,15 +763,10 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
                             if (negativeViews.contains(optionID)) {
                                 mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
                             } else {
-                                closeVisibleBG(new OnSwipeListener() {
+                                closeVisibleBG(new OnSwipeListenerAdapter() {
                                     @Override
                                     public void onSwipeOptionsClosed() {
                                         mBgClickListener.onSwipeOptionClicked(optionID, downPosition);
-                                    }
-
-                                    @Override
-                                    public void onSwipeOptionsOpened() {
-
                                     }
                                 });
                             }
@@ -937,11 +935,4 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener, 
         void setOnActivityTouchListener(OnActivityTouchListener listener);
     }
 
-    public interface OnSwipeListener {
-
-        void onSwipeOptionsClosed();
-
-        void onSwipeOptionsOpened();
-
-    }
 }
