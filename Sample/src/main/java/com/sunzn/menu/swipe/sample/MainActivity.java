@@ -78,7 +78,23 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
     private ArrayList<ModelBean> getData() {
         ArrayList<ModelBean> data = new ArrayList<>(25);
         for (int i = 0; i < 25; i++) {
-            data.add(new ModelBean("Row " + (i + 1), "Some Text..."));
+            switch (i) {
+                case 0:
+                    data.add(new ModelBean("Row " + (i + 1), "Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text..."));
+                    break;
+                case 5:
+                    data.add(new ModelBean("Row " + (i + 1), "Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text..."));
+                    break;
+                case 12:
+                    data.add(new ModelBean("Row " + (i + 1), "Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text..."));
+                    break;
+                case 20:
+                    data.add(new ModelBean("Row " + (i + 1), "Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text..."));
+                    break;
+                default:
+                    data.add(new ModelBean("Row " + (i + 1), "Some Text..."));
+                    break;
+            }
         }
         return data;
     }
