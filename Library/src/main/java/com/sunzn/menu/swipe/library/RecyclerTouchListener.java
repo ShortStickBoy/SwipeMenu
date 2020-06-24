@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,6 +15,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ListView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sunzn.menu.swipe.library.port.OnSwipeListener;
 import com.sunzn.menu.swipe.library.port.OnSwipeListenerAdapter;
